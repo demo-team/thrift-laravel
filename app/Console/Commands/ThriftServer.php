@@ -51,10 +51,12 @@ class ThriftServer extends Command
         $inputProtocolFactory = new \Thrift\Factory\TBinaryProtocolFactory(true, true);
         $outputProtocolFactory = new \Thrift\Factory\TBinaryProtocolFactory(true, true);
 
-        $user_fork = 2;
+        $type = $this->choice('Please select Server run mode:',['Simple Server'=>1,'Fork Server'=>2]);
+        $user_fork = $type;
 
         switch ($user_fork){
             case 1:
+                print "单进程模式..\n";
                 $server = new \Thrift\Server\TSimpleServer(
                     $processor,
                     $transport,
@@ -63,6 +65,7 @@ class ThriftServer extends Command
                 );
                 break;
             case 2:
+                print "多进程Fork模式..\n";
                 $server = new \Thrift\Server\TForkingServer(
                     $processor,
                     $transport,

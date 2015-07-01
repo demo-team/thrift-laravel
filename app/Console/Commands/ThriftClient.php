@@ -38,14 +38,14 @@ class ThriftClient extends Command
     public function handle()
     {
         //1万次请求测试
-        $choice = $this->choice('select call thrift rpc times: ',['1'=>1,'2'=>100,'3'=>1000,'4'=>10000],1);
+        $choice = $this->choice('select call thrift rpc times: ',['1 calls'=>1,'100 calls'=>100,'1000 calls'=>1000,'10000 calls'=>10000],1);
 
         $i= abs($choice);
         while($i-- >0 ) {
             try {
                 $host = '127.0.0.1';
                 $port = 8091;
-                $email = 'nil.yang@qq.com';
+                $email = 'zhangsan@example.com';
                 $info = ['email' => $email, 'name' => '张三', 'userId' => 222];
                 print "connect $host:$port...\n\n";
                 $socket = new TSocket($host, $port);
@@ -56,7 +56,7 @@ class ThriftClient extends Command
 
                 $transport->open();
 
-                $newAccount = new \Demo\AccountInfo();
+                $newAccount = new \Demo\AccountInfo($info);
                 $ret = $client->setUserInfo($newAccount);
                 var_dump($ret);
 

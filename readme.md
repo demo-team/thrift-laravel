@@ -8,6 +8,12 @@ shell> php artisan thrift:demo:server
 
 ```
 
+服务器端会要求选择 单进程和多进程模式 
+1: 单进程模式
+2: 多进程模式
+
+
+
 ### 客户端
 ```
 shell> php artisan thrift:demo:client
