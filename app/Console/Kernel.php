@@ -3,6 +3,9 @@
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
+use App\Console\Commands\ThriftServer;
+use App\Console\Commands\ThriftClient;
+
 class Kernel extends ConsoleKernel {
 
 	/**
@@ -10,10 +13,12 @@ class Kernel extends ConsoleKernel {
 	 *
 	 * @var array
 	 */
-	protected $commands = [
+	protected $commands = array(
 		'App\Console\Commands\Inspire',
 		'App\Console\Commands\CookieTest',
-	];
+		ThriftServer::class,
+		ThriftClient::class
+	);
 
 	/**
 	 * Define the application's command schedule.
