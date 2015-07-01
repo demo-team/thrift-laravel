@@ -9,7 +9,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Juxiang\Handlers\AccountHandler;
+use DemoServices\Handlers\AccountHandler;
 use Thrift\Transport\TPhpStream;
 use Thrift\Protocol\TBinaryProtocol;
 use Thrift\Transport\TBufferedTransport;
@@ -51,12 +51,26 @@ class ThriftServer extends Command
         $inputProtocolFactory = new \Thrift\Factory\TBinaryProtocolFactory(true, true);
         $outputProtocolFactory = new \Thrift\Factory\TBinaryProtocolFactory(true, true);
 
-        $server = new \Thrift\Server\TSimpleServer(
-            $processor,
-            $transport,
-            $inputTransportFactory,$outputTransportFactory,
-            $inputProtocolFactory, $outputProtocolFactory
-        );
+        $user_fork = 2;
+
+        switch ($user_fork){
+            case 1:
+                $server = new \Thrift\Server\TSimpleServer(
+                    $processor,
+                    $transport,
+                    $inputTransportFactory,$outputTransportFactory,
+                    $inputProtocolFactory, $outputProtocolFactory
+                );
+                break;
+            case 2:
+                $server = new \Thrift\Server\TForkingServer(
+                    $processor,
+                    $transport,
+                    $inputTransportFactory,$outputTransportFactory,
+                    $inputProtocolFactory, $outputProtocolFactory
+                );
+                break;
+        }
 
         echo "server start listen $host:$port ... \n";
         $server->serve();

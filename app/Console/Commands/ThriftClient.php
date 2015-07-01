@@ -38,7 +38,9 @@ class ThriftClient extends Command
     public function handle()
     {
         //1万次请求测试
-        $i=10000;
+        $choice = $this->choice('select call thrift rpc times: ',['1'=>1,'2'=>100,'3'=>1000,'4'=>10000],1);
+
+        $i= abs($choice);
         while($i-- >0 ) {
             try {
                 $host = '127.0.0.1';

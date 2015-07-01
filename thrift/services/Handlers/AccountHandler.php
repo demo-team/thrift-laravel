@@ -36,7 +36,7 @@ class AccountHandler implements AccountIf
     {
         echo "log: call ".  __METHOD__ ,"\n\n";
 
-        $info = ['email'=>$email,'name'=>'xiao san','userId'=>222];
+        $info = ['email'=>$email,'name'=>'张三','userId'=>222];
         return new AccountInfo($info);
     }
 }
