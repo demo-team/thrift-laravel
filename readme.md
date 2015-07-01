@@ -1,3 +1,24 @@
+## Laravel with Thrift
+
+Laravel 与thrift 结合开发。使用到artisan。
+
+### 服务器端
+```
+shell> php artisan thrift:demo:server 
+
+```
+
+### 客户端
+```
+shell> php artisan thrift:demo:client
+
+```
+
+### 
+
+`注意`：运行本项目之前，需要执行 composer install
+
+
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
@@ -25,3 +46,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ### License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
