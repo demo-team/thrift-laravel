@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b488b60707deef2ea91c625034f4278b",
+    "hash": "8b985fbe3f116a32f3e4de5825ed53f1",
     "packages": [
         {
             "name": "apache/thrift",

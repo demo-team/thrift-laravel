@@ -36,40 +36,45 @@ class WelcomeController extends Controller {
 	 * @return Response
 	 */
 	public function index()
-	{
-		static $request_count=0;
+    {
+        return view('wellcome');
+    }
 
-		try {
-			$host = '192.168.1.109';
-			$port = 8091;
-			$email = 'nil.yang@qq.com';
-			$info = ['email' => $email, 'name' => 'xiao san', 'userId' => 222];
-			print "connect $host:$port...".$request_count++."\n\n";
-			$socket = new TSocket($host, $port);
+    public function demoThriftClient()
+    {
+        static $request_count=0;
 
-			$transport = new TBufferedTransport($socket, 1024, 1024);
-			$protocol = new TBinaryProtocol($transport);
-			$client = new AccountClient($protocol);
+        try {
+            $host = '127.0.0.1';
+            $port = 8091;
+            $email = 'nil.yang@qq.com';
+            $info = ['email' => $email, 'name' => '张三', 'userId' => 222];
+            print "connect $host:$port...".$request_count++."\n\n";
+            $socket = new TSocket($host, $port);
 
-			$transport->open();
+            $transport = new TBufferedTransport($socket, 1024, 1024);
+            $protocol = new TBinaryProtocol($transport);
+            $client = new AccountClient($protocol);
 
-			$newAccount = new \Demo\AccountInfo();
-			$ret = $client->setUserInfo($newAccount);
+            $transport->open();
+
+            $newAccount = new \Demo\AccountInfo();
+            $ret = $client->setUserInfo($newAccount);
 //			var_dump($ret);
 
-			$accountInfo = $client->getUserInfoByEmail($email);
+            $accountInfo = $client->getUserInfoByEmail($email);
 
 //			var_dump($accountInfo);
 
-			$transport->close();
+            $transport->close();
 
-			return  response()->json($accountInfo);
+            return  response()->json($accountInfo);
 
-		} catch (TException $e) {
-			print 'TException: ' . $e->getMessage() . "\n";
-		}
+        } catch (TException $e) {
+            print 'TException: ' . $e->getMessage() . "\n";
+        }
 
-		//return view('welcome');
-	}
+        //return view('welcome');
+    }
 
 }

@@ -37,16 +37,15 @@ class ThriftClient extends Command
      */
     public function handle()
     {
+        //1万次请求测试
         $i=10000;
         while($i-- >0 ) {
-
-
             try {
-                $host = '192.168.1.109';
+                $host = '127.0.0.1';
                 $port = 8091;
                 $email = 'nil.yang@qq.com';
-                $info = ['email' => $email, 'name' => 'xiao san', 'userId' => 222];
-//                print "connect $host:$port...\n\n";
+                $info = ['email' => $email, 'name' => '张三', 'userId' => 222];
+                print "connect $host:$port...\n\n";
                 $socket = new TSocket($host, $port);
 
                 $transport = new TBufferedTransport($socket, 1024, 1024);
